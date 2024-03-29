@@ -3,11 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders} from "next-auth";
+import { signIn, signOut, useSession, getProviders} from "next-auth/react";
 
 
 const Navbar = () => {
-  const isUserLoggedin = true;
+  const { data: session } = useSession();
+
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setupProviders = async () => {
+       const response = await getProviders();
+       setProviders(response);
+    }
+    setupProviders();
+  }, [])
 
   return (
     
@@ -48,25 +58,38 @@ const Navbar = () => {
               <Link className="nav-link active" aria-current="page" href="/content">Content</Link>
             </li>
           </ul>
-          {isUserLoggedin ? 
+          {session?.user ? 
            (
-            <div className="d-flex mx-3" role="search">
+            <div className="d-flex mx-3">
               <button className="btn btn-outline-success " onClick={signOut} type="button">Log Out</button>
               <Link href='/dashboard'>
                   <Image
-                     src="/Codemode-Logo-Updated-02.png.webp"
+                     src={session?.user.image}
                      alt="Profile"
                      width={37}
                      height={37}
-                     className="object-contain"
+                     className="rounded mx-3"
                   />
               </Link>
             </div>
             
            ):(
-            <div className="d-flex mx-3" role="search">
-              <button className="btn btn-outline-success " onClick= {signIn} type="button">Sign in</button>
-            </div>
+             <>
+                {
+                    providers && 
+                    Object.values(providers).map((provider) =>
+                    (
+                        <button 
+                          type="button"
+                          key={provider.name}
+                          onClick={() => signIn(provider.id)}
+                          className="btn btn-success mx-3"
+                        >
+                         Sign in
+                        </button>
+                    ))
+                }
+             </>
            )
         }
         </div>
