@@ -7,8 +7,8 @@ import { usePathname, useRouter } from "next/navigation";
 
 const CourseCard = ({post}) => {
   return (
-     <div className="col-3">
-        <div className="card" style={{marginTop: 5, marginBottom: 10}}>
+     <div className=" col -6 col-md-4 col-lg-3">
+        <div className="card" >
           <Image src={post.image} className="card-img-top" alt="Course Image" width={50} height={100}/>
           <div className="card-img-overlay">
              <p className="card-text d-inline bg-black text-white rounded p-2">{post.type}</p>

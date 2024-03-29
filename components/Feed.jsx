@@ -7,7 +7,7 @@ import CourseCard from './CourseCard';
 const CourseCardList = ({data}) => {
   return (
     <div className='container w-100 h-100' style={{paddingTop: 12}}>
-      <div className='row'>
+      <div className='row gy-3'>
         {data.map((post) => (
           <CourseCard
            key={post._id}
