@@ -1,9 +1,10 @@
 import Feed from "@/components/Feed";
 
-export default function Home() {
+export default function Home({searchParams}) {
   return (
     <main>
-      <Feed/>
+      <Feed
+      />
     </main>
     
   );
