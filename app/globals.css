@@ -1,2 +1,14 @@
 
 
+/* Feed Component */
+.feed {
+    @apply mt-16 mx-auto w-full max-w-xl flex  flex-col gap-2;
+  }
+
+  .search_input {
+    @apply  w-full rounded-md border border-blue-300 bg-white py-2.5  pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+  }
+  
+  .card_layout {
+    @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+  }

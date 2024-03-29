@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Feed from "@/components/Feed";
 
 export default function Home() {
   return (
     <main>
-       <h1 className="text-danger">Hello</h1>  
+       <Feed/>
     </main>
   );
 }
